@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce Innovador Básico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+
+        .box {
+            border: 2px solid #ff6600;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .box header {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #ff6600;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: #eef;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: .95em;
+        }
+
+        pre {
+            background: #eef;
+            padding: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>E-Commerce Innovador</h1>
+
+        <div class="box">
+            <header>1. Visión General</header>
+            <p>Aplicación de ejemplo para enseñar los fundamentos de una plataforma de comercio electrónico con:</p>
+            <ol>
+                <li>Catálogo de productos y carrito de compras</li>
+                <li>Recomendaciones personalizadas con IA</li>
+                <li>Análisis de comportamiento de usuarios</li>
+                <li>Procesamiento de pagos</li>
+            </ol>
+        </div>
+
+        <div class="box">
+            <header>2. Frontend: React</header>
+            <p><strong>¿Qué es?</strong> Biblioteca de Facebook para interfaces dinámicas.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Componentes funcionales y hooks (useState, useEffect)</li>
+                <li>React Router para navegación entre catálogo, producto y checkout</li>
+                <li>Context API o Redux para estado global del carrito</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// ProductCard.js
+function ProductCard({ product, onAdd }) {
+  return (
+    &lt;div&gt;
+      &lt;h3&gt;{product.name}&lt;/h3&gt;
+      &lt;button onClick={() =&gt; onAdd(product)}&gt;Agregar al carrito&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+        </div>
+
+        <div class="box">
+            <header>3. Backend: Express.js</header>
+            <p><strong>¿Qué es?</strong> Framework minimalista de Node.js para APIs REST.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Rutas CRUD para productos, usuarios y pedidos</li>
+                <li>Middleware para autenticación (JWT) y validación</li>
+                <li>Integración con motor de recomendaciones</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// routes/products.js
+const router = require('express').Router();
+router.get('/', async (req, res) =&gt; {
+  const items = await Product.find();
+  res.json(items);
+});
+module.exports = router;</code></pre>
+        </div>
+
+        <div class="box">
+            <header>4. Base de Datos: MongoDB</header>
+            <p><strong>¿Qué es?</strong> Base de datos NoSQL orientada a documentos.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Esquemas flexibles con Mongoose</li>
+                <li>Consultas agregadas para análisis de ventas</li>
+                <li>Índices en campos de búsqueda rápida</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// models/Product.js
+const mongoose = require('mongoose');
+const ProductSchema = new mongoose.Schema({
+  name: String,
+  price: Number,
+  category: String
+});
+module.exports = mongoose.model('Product', ProductSchema);</code></pre>
+        </div>
+
+        <div class="box">
+            <header>5. IA: TensorFlow.js</header>
+            <p><strong>¿Qué es?</strong> Librería para ejecutar modelos de ML en JavaScript.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Entrenamiento de modelo de recomendaciones colaborativas</li>
+                <li>Inferencia en servidor o cliente</li>
+                <li>Preprocesamiento de datos de usuario y productos</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// train.js
+const tf = require('@tensorflow/tfjs-node');
+const data = tf.tensor2d(userProductMatrix);
+const model = tf.sequential();
+model.add(tf.layers.dense({ units: 16, activation: 'relu', inputShape: [data.shape[1]] }));
+model.add(tf.layers.dense({ units: data.shape[1], activation: 'softmax' }));
+model.compile({ optimizer: 'adam', loss: 'categoricalCrossentropy' });
+await model.fit(data, data, { epochs: 10 });</code></pre>
+        </div>
+
+        <div class="box">
+            <header>6. Analítica: Chart.js</header>
+            <p><strong>¿Qué es?</strong> Librería JavaScript para gráficos interactivos.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Gráficos de barras para ventas por categoría</li>
+                <li>Gráficos de línea para tendencias temporales</li>
+                <li>Dashboards combinando múltiples tipos de gráfico</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// Dashboard.js
+import { Bar } from 'react-chartjs-2';
+function Dashboard({ data }) {
+  const config = {
+    labels: data.categories,
+    datasets: [{ label: 'Ventas', data: data.totals }]
+  };
+  return &lt;Bar data={config} /&gt;;
+}</code></pre>
+        </div>
+
+        <div class="box">
+            <header>7. Flujo de Trabajo Sugerido</header>
+            <ol>
+                <li>Setup:
+                    <code>npx create-react-app ecommerce-ui</code>,
+                    <code>npm install express mongoose tensorflow</code>,
+                    configurar MongoDB.
+                </li>
+                <li>Frontend: Crear catálogo y carrito en React.</li>
+                <li>Backend: Rutas CRUD y autenticación JWT.</li>
+                <li>IA: Recopilar datos y entrenar modelo con TensorFlow.js.</li>
+                <li>Analytics: Implementar dashboards con Chart.js.</li>
+                <li>Pagos: Integrar Stripe en backend y frontend.</li>
+                <li>Pruebas y Documentación: README y diagramas de flujo.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - CoderHub.run</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="index.html">
+                <img src="imagenes/descarga.png " style="height: 30px; border-radius: 20%;" alt=""> CoderHub.run
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicios.html">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="portafolio.html">Portafolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main style="padding-top: 80px;">
+        <!-- Hero Section -->
+        <section class="bg-light text-white py-5">
+            <div class="container shadow-lg bg-dark p-5 rounded">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeInUp">
+                            Contáctanos
+                        </h1>
+                        <p class="lead animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                            Estamos listos para hacer realidad tu próximo proyecto
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulario de Contacto -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="card border-0 shadow-lg animate__animated animate__fadeInUp">
+                            <div class="card-body p-5">
+                                <h3 class="card-title fw-bold mb-4 text-center">
+                                    <i class="fas fa-envelope text-primary me-2"></i>
+                                    Envíanos un Mensaje
+                                </h3>
+
+                                <form id="contactForm" novalidate>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="nombre" class="form-label fw-semibold">Nombre *</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                            <div class="invalid-feedback">
+                                                Por favor ingresa tu nombre.
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="correo" class="form-label fw-semibold">Correo Electrónico
+                                                *</label>
+                                            <input type="email" class="form-control" id="correo" name="correo" required>
+                                            <div class="invalid-feedback">
+                                                Por favor ingresa un correo válido.
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="asunto" class="form-label fw-semibold">Asunto *</label>
+                                            <select class="form-select" id="asunto" name="asunto" required>
+                                                <option value="">Selecciona un asunto</option>
+                                                <option value="desarrollo-web">Desarrollo Web</option>
+                                                <option value="app-movil">Aplicación Móvil</option>
+                                                <option value="consultoria">Consultoría</option>
+                                                <option value="soporte">Soporte Técnico</option>
+                                                <option value="otro">Otro</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Por favor selecciona un asunto.
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="mensaje" class="form-label fw-semibold">Mensaje *</label>
+                                            <textarea class="form-control" id="mensaje" name="mensaje" rows="5"
+                                                placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+                                            <div class="invalid-feedback">
+                                                Por favor escribe tu mensaje.
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="acepto"
+                                                    name="acepto" required>
+                                                <label class="form-check-label" for="acepto">
+                                                    Acepto los términos y condiciones y la política de privacidad *
+                                                </label>
+                                                <div class="invalid-feedback">
+                                                    Debes aceptar los términos y condiciones.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 text-center">
+                                            <button class="btn btn-primary">
+                                                <i class="fas fa-paper-plane me-2"></i>
+                                                Enviar
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Información de Contacto -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h2 class="display-5 fw-bold animate__animated animate__fadeInUp">
+                            Otras Formas de Contacto
+                        </h2>
+                        <p class="lead text-muted">Elige la opción que más te convenga</p>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div
+                            class="card border-0 shadow-sm hover-scale animate__animated animate__fadeInUp text-center h-100">
+                            <div class="card-body p-4">
+                                <div class="text-primary mb-3">
+                                    <i class="fas fa-phone fa-3x"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Teléfono</h5>
+                                <p class="card-text text-muted mb-3">
+                                    Llámanos directamente para una consulta inmediata
+                                </p>
+                                <!-- AQUÍ DEBES INGRESAR TU NÚMERO DE TELÉFONO REAL -->
+                                <a href="tel:+57 3147332504" class="btn btn-outline-primary">
+                                    <i class="fas fa-phone me-2"></i>
+                                    +57 (314)733 2504
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card border-0 shadow-sm hover-scale animate__animated animate__fadeInUp text-center h-100"
+                            style="animation-delay: 0.2s;">
+                            <div class="card-body p-4">
+                                <div class="text-primary mb-3">
+                                    <i class="fas fa-envelope fa-3x"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Email</h5>
+                                <p class="card-text text-muted mb-3">
+                                    Escríbenos y te responderemos en menos de 24 horas
+                                </p>
+                                <!-- AQUÍ DEBES INGRESAR TU EMAIL REAL -->
+                                <a href="mailto:info@coderhub.run" class="btn btn-outline-primary">
+                                    <i class="fas fa-envelope me-2"></i>
+                                    infoAlcliente2025@coderhub.run
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card border-0 shadow-sm hover-scale animate__animated animate__fadeInUp text-center h-100"
+                            style="animation-delay: 0.4s;">
+                            <div class="card-body p-4">
+                                <div class="text-primary mb-3">
+                                    <i class="fab fa-whatsapp fa-3x"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">WhatsApp</h5>
+                                <p class="card-text text-muted mb-3">
+                                    Chatea con nosotros para una respuesta rápida
+                                </p>
+                                <!-- AQUÍ DEBES INGRESAR TU NÚMERO DE WHATSAPP REAL -->
+                                <a href="https://wa.me/573147332504" target="_blank" class="btn btn-outline-primary">
+                                    <i class="fab fa-whatsapp me-2"></i>
+                                    Abrir WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mapa -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h2 class="display-5 fw-bold animate__animated animate__fadeInUp">
+                            Nuestra Ubicación
+                        </h2>
+                        <p class="lead text-muted">Visítanos en nuestras oficinas</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="card border-0 shadow-lg animate__animated animate__fadeInUp">
+                            <div class="card-body p-0">
+
+                                <!-- AQUÍ DEBES INGRESAR TU UBICACIÓN REAL EN GOOGLE MAPS -->
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1376.1228301602453!2d-75.605310096019!3d1.620082061690033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e244e2307a3b2af%3A0x2eb9e14897cad6c7!2sUniversidad%20de%20la%20Amazonia%20sede%20principal!5e0!3m2!1ses-419!2sco!4v1757966228522!5m2!1ses-419!2sco"
+                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+
+                                </iframe>
+                            </div>
+                            <div class="card-footer bg-white p-4">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6 class="fw-bold mb-2">
+                                            <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                                            Dirección
+                                        </h6>
+                                        <!-- AQUÍ DEBES INGRESAR TU DIRECCIÓN REAL -->
+                                        <p class="text-muted mb-0">
+                                            Carrera #3, Florencia, Caquetá<br>
+                                            Colombia
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="fw-bold mb-2">
+                                            <i class="fas fa-clock text-primary me-2"></i>
+                                            Horario de Atención
+                                        </h6>
+                                        <p class="text-muted mb-0">
+                                            Lunes a Viernes: 8:00 AM - 6:00 PM<br>
+                                            Sábados: 9:00 AM - 2:00 PM
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <!-- Agregar el script para cargar el footer -->
+    <script src="Script1/loader-footer.js"></script>
+
+</body>
+
+</html>

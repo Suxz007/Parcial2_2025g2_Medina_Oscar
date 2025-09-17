@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinApp - App Fintech Básica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .box {
+            border: 2px solid #6c63ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .box header {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #6c63ff;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: #eef;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: .95em;
+        }
+
+        pre {
+            background: #eef;
+            padding: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>App Fintech </h1>
+
+        <div class="box">
+            <header>1. Visión General</header>
+            <p>Aplicación móvil de ejemplo para enseñar los fundamentos de una app fintech con:</p>
+            <ol>
+                <li>Gestión de Presupuestos Personales</li>
+                <li>Seguimiento de Gastos en Tiempo Real</li>
+                <li>Simulador de Inversiones</li>
+                <li>Análisis Financiero con Gráficos</li>
+            </ol>
+        </div>
+
+        <div class="box">
+            <header>2. Desarrollo Móvil: React Native</header>
+            <p><strong>¿Qué es?</strong> Framework de Facebook para desarrollo multiplataforma (iOS/Android).</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Componentes nativos: View, Text, TouchableOpacity, ScrollView</li>
+                <li>Navegación con React Navigation entre pantallas</li>
+                <li>Hooks para estado local y efectos secundarios</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// ExpenseScreen.js
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+
+export default function ExpenseScreen() {
+  const [amount, setAmount] = useState('');
+  const [category, setCategory] = useState('');
+  
+  const addExpense = () => {
+    // Guardar gasto en Firebase
+    firestore().collection('expenses').add({
+      amount: parseFloat(amount),
+      category,
+      date: new Date()
+    });
+  };
+  
+  return (
+    &lt;View&gt;
+      &lt;TextInput 
+        value={amount} 
+        onChangeText={setAmount} 
+        placeholder="Monto" 
+      /&gt;
+      &lt;TouchableOpacity onPress={addExpense}&gt;
+        &lt;Text&gt;Agregar Gasto&lt;/Text&gt;
+      &lt;/TouchableOpacity&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
+        </div>
+
+        <div class="box">
+            <header>3. Backend y Base de Datos: Firebase</header>
+            <p><strong>¿Qué es?</strong> Plataforma de Google para desarrollo de apps sin servidor.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Firestore: Base de datos NoSQL en tiempo real</li>
+                <li>Authentication: Login con Google, Facebook o email/password</li>
+                <li>Cloud Functions: Lógica de servidor para cálculos complejos</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// firebase.js
+import firestore from '@react-native-firebase/firestore';
+
+export const getExpenses = (userId) => {
+  return firestore()
+    .collection('expenses')
+    .where('userId', '==', userId)
+    .orderBy('date', 'desc')
+    .get();
+};
+
+export const getBudgetStatus = async (userId) => {
+  const expenses = await getExpenses(userId);
+  const total = expenses.docs.reduce((sum, doc) => 
+    sum + doc.data().amount, 0
+  );
+  return { spent: total, remaining: 1000 - total };
+};</code></pre>
+        </div>
+
+        <div class="box">
+            <header>4. Pagos y Transacciones: Stripe</header>
+            <p><strong>¿Qué es?</strong> API de pagos para procesar transacciones seguras.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Payment Intents para flujo de pago seguro</li>
+                <li>Webhooks para confirmar transacciones</li>
+                <li>Stripe Elements para formularios de tarjetas</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// payment.js
+import { StripeProvider, CardField, confirmPayment } from '@stripe/stripe-react-native';
+
+export default function PaymentScreen() {
+  const handlePayment = async () => {
+    const { paymentIntent } = await confirmPayment(clientSecret, {
+      paymentMethodType: 'Card',
+      paymentMethodData: {
+        billingDetails: { email: 'user@example.com' }
+      }
+    });
+    
+    if (paymentIntent.status === 'Succeeded') {
+      // Actualizar saldo de inversión en Firebase
+      firestore().collection('investments').add({
+        amount: 100,
+        type: 'deposit',
+        date: new Date()
+      });
+    }
+  };
+}</code></pre>
+        </div>
+
+        <div class="box">
+            <header>5. Visualización de Datos: Chart.js</header>
+            <p><strong>¿Qué es?</strong> Librería JavaScript para crear gráficos interactivos.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Gráficos de barras para gastos por categoría</li>
+                <li>Gráficos de línea para evolución de ahorros</li>
+                <li>Gráficos de dona para distribución del presupuesto</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// ChartScreen.js
+import { LineChart } from 'react-native-chart-kit';
+
+export default function AnalyticsScreen() {
+  const [chartData, setChartData] = useState({
+    labels: ['Ene', 'Feb', 'Mar', 'Abr'],
+    datasets: [{
+      data: [500, 750, 600, 900],
+      label: 'Gastos Mensuales'
+    }]
+  });
+
+  return (
+    &lt;LineChart
+      data={chartData}
+      width={350}
+      height={220}
+      chartConfig={{
+        backgroundColor: '#e26a00',
+        backgroundGradientFrom: '#fb8c00',
+        backgroundGradientTo: '#ffa726',
+        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+      }}
+    /&gt;
+  );
+}</code></pre>
+        </div>
+
+        <div class="box">
+            <header>6. Flujo de Trabajo Sugerido</header>
+            <ol>
+                <li>Setup:
+                    <code>npx react-native init FinApp</code>,
+                    configurar Firebase project y Stripe account.
+                </li>
+                <li>Autenticación: Implementar login con Firebase Auth.</li>
+                <li>CRUD Gastos: Crear, listar y categorizar gastos con Firestore.</li>
+                <li>Presupuestos: Definir límites y notificaciones.</li>
+                <li>Inversiones: Integrar Stripe para depósitos simulados.</li>
+                <li>Analytics: Implementar gráficos con Chart.js para análisis.</li>
+                <li>Testing: Probar en dispositivos iOS/Android y documentar.</li>
+            </ol>
+        </div>
+
+        <div class="box">
+            <header>7. Resultado Esperado</header>
+            <p>Al completar este proyecto, los estudiantes habrán aprendido a:</p>
+            <ol>
+                <li>Desarrollar apps móviles <strong>multiplataforma</strong> con React Native.</li>
+                <li>Implementar <strong>autenticación</strong> y base de datos NoSQL con Firebase.</li>
+                <li>Integrar <strong>pagos seguros</strong> usando Stripe API.</li>
+                <li>Crear <strong>visualizaciones financieras</strong> con Chart.js.</li>
+                <li>Manejar <strong>estado global</strong> y navegación en apps móviles.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+
+</html>

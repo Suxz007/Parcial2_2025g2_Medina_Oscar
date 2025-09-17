@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ERP Empresarial Básico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .box {
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .box header {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #28a745;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: #eef;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: .95em;
+        }
+
+        pre {
+            background: #eef;
+            padding: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>ERP Empresarial</h1>
+
+        <div class="box">
+            <header>1. Visión General</header>
+            <p>Aplicación de ejemplo para enseñar los fundamentos de un sistema ERP integral con:</p>
+            <ol>
+                <li>Gestión de Inventarios</li>
+                <li>Facturación y Ventas</li>
+                <li>Recursos Humanos</li>
+                <li>Reportes Analíticos Avanzados</li>
+            </ol>
+        </div>
+
+        <div class="box">
+            <header>2. Interfaz de Usuario: Angular</header>
+            <p><strong>¿Qué es?</strong> Framework de Google para SPAs.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Rutas y Lazy Loading para módulos de inventario, facturación, RRHH y reportes</li>
+                <li>Forms reactivos para creación y edición de registros</li>
+                <li>Servicios HTTP para consumir APIs</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// inventory-list.component.ts
+export class InventoryListComponent {
+  items$: Observable<Item[]>;
+  constructor(private inventoryService: InventoryService) {
+    this.items$ = this.inventoryService.getAll();
+  }
+}</code></pre>
+        </div>
+
+        <div class="box">
+            <header>3. Servidor y Lógica de Negocio: NestJS</header>
+            <p><strong>¿Qué es?</strong> Framework Node.js con TypeScript.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Módulos separados: InventoryModule, BillingModule, HrModule, ReportsModule</li>
+                <li>Guards y interceptors para seguridad y logging</li>
+                <li>Servicios transaccionales con Unit of Work</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// billing.controller.ts
+@Controller('billing')
+export class BillingController {
+  constructor(private billingService: BillingService) {}
+  @Post('invoice')
+  create(@Body() dto: CreateInvoiceDto) {
+    return this.billingService.generateInvoice(dto);
+  }
+}</code></pre>
+        </div>
+
+        <div class="box">
+            <header>4. Almacenamiento de Datos: PostgreSQL</header>
+            <p><strong>¿Qué es?</strong> Base de datos relacional avanzada.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Relaciones entre productos, pedidos, empleados y nóminas</li>
+                <li>Transacciones complejas para facturación segura</li>
+                <li>Vistas y funciones para reportes analíticos</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>-- schema.sql
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  stock INT DEFAULT 0
+);
+CREATE TABLE invoices (
+  id SERIAL PRIMARY KEY,
+  total NUMERIC(10,2) NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+CREATE TABLE employees (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100)
+);
+CREATE VIEW sales_summary AS
+ SELECT date_trunc('day', created_at) AS day,
+        SUM(total) AS daily_total
+ FROM invoices
+ GROUP BY day;</code></pre>
+        </div>
+
+        <div class="box">
+            <header>5. Reportes Analíticos: Charts con Angular</header>
+            <p><strong>¿Qué es?</strong> Visualización de datos en front-end.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Uso de librerías como Chart.js o ngx-charts</li>
+                <li>Endpoints en NestJS que devuelven datos agregados</li>
+                <li>Componentes Angular para mostrar gráficas de ventas, inventario y nómina</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// report.component.ts
+this.http.get<SalesSummary[]>('/api/reports/sales').subscribe(data => {
+new Chart('canvas', {
+    type: 'bar',
+    data: {
+    labels: data.map(d => d.day),
+    datasets: [{ data: data.map(d => d.daily_total), label: 'Ventas Diarias' }]
+    }
+ });
+});</code></pre>
+        </div>
+
+        <div class="box">
+            <header>6. Flujo de Trabajo Sugerido</header>
+            <ol>
+                <li>Setup:
+                    <code>ng new erp-ui</code>,
+                    <code>nest new erp-api</code>, configurar PostgreSQL.
+                </li>
+                <li>Módulos CRUD: Implementar inventarios y facturación primero.</li>
+                <li>Recursos Humanos: CRUD de empleados y nómina.</li>
+                <li>Reportes: Crear vistas en BD y endpoints en NestJS.</li>
+                <li>Dashboards: Integrar gráficos en Angular.</li>
+                <li>Pruebas y Documentación: README con diagramas ER y rutas API.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+
+</html>

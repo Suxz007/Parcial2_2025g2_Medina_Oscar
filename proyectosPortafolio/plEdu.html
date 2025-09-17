@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduLearn Básico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .box {
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .box header {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: #eef;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: .95em;
+        }
+
+        pre {
+            background: #eef;
+            padding: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sobre plataforma Educativa</h1>
+
+        <div class="box">
+            <header>1. Visión General</header>
+            <p>Aplicación de ejemplo para enseñar los fundamentos de una plataforma de aprendizaje en línea con:</p>
+            <ol>
+                <li>Interfaz de Usuario (Angular)</li>
+                <li>Servidor y Lógica de Negocio (NestJS)</li>
+                <li>Almacenamiento de Datos (PostgreSQL)</li>
+                <li>Videoconferencias en Tiempo Real (WebRTC)</li>
+            </ol>
+        </div>
+
+        <div class="box">
+            <header>2. Interfaz de Usuario: Angular</header>
+            <p><strong>¿Qué es?</strong> Framework de Google para SPAs.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Componentes reutilizables</li>
+                <li>Data Binding bidireccional</li>
+                <li>Angular CLI para scaffolding</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// login.component.ts
+export class LoginComponent {
+  form = this.fb.group({
+    email: [''],
+    password: ['']
+  });
+  constructor(private fb: FormBuilder, private auth: AuthService) {}
+  submit() {
+    this.auth.login(this.form.value).subscribe();
+  }
+}</code></pre>
+        </div>
+
+        <div class="box">
+            <header>3. Servidor y Lógica de Negocio: NestJS</header>
+            <p><strong>¿Qué es?</strong> Framework Node.js con TypeScript.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Controladores y Servicios</li>
+                <li>Decorators para rutas e inyección</li>
+                <li>WebSockets integrados</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// auth.controller.ts
+@Controller('auth')
+export class AuthController {
+  constructor(private authService: AuthService) {}
+  @Post('login')
+  login(@Body() dto: LoginDto) {
+    return this.authService.login(dto);
+  }
+}</code></pre>
+        </div>
+
+        <div class="box">
+            <header>4. Almacenamiento de Datos: PostgreSQL</header>
+            <p><strong>¿Qué es?</strong> Base de datos relacional avanzada.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>Transacciones ACID</li>
+                <li>JSONB para datos semiestructurados</li>
+                <li>Índices para optimización</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>-- schema.sql
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+CREATE TABLE progress (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+  completed_quizzes INT DEFAULT 0
+);</code></pre>
+        </div>
+
+        <div class="box">
+            <header>5. Videoconferencias en Tiempo Real: WebRTC</header>
+            <p><strong>¿Qué es?</strong> API de navegador para P2P de audio y vídeo.</p>
+            <p><strong>Conceptos clave:</strong></p>
+            <ol>
+                <li>RTCPeerConnection para ofertas/respuestas</li>
+                <li>Señalización vía WebSocket</li>
+                <li>Streams multimedia sin plugins</li>
+            </ol>
+            <p><strong>Ejemplo didáctico:</strong></p>
+            <pre><code>// video.service.ts (Angular)
+const pc = new RTCPeerConnection();
+navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+  .then(stream => {
+    pc.addStream(stream);
+    // intercambiar señales con servidor...
+  });</code></pre>
+        </div>
+
+        <div class="box">
+            <header>6. Flujo de Trabajo Sugerido</header>
+            <ol>
+                <li>Setup:
+                    <code>ng new edulearn-ui</code>,
+                    <code>nest new edulearn-api</code>, inicializar PostgreSQL.
+                </li>
+                <li>Autenticación: Implementar login/registro con JWT.</li>
+                <li>Persistencia: Mapear entidades con TypeORM o Prisma.</li>
+                <li>Videoconferencia: Configurar WebSocket y RTCPeerConnection.</li>
+                <li>Pruebas y Documentación: README y comentarios en código.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+
+</html>
